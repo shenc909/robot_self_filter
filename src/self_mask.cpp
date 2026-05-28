@@ -29,7 +29,11 @@
 
 #include "robot_self_filter/self_mask.h"
 #include <urdf/model.h>
+#if defined(ROS_DISTRO_FOXY)
+#include <resource_retriever/retriever.h>
+#else
 #include <resource_retriever/retriever.hpp>
+#endif
 #include <algorithm>
 #include <sstream>
 #include <climits>

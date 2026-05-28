@@ -16,8 +16,12 @@
 #include <set>
 
 // ROS 2
-#include <rclcpp/rclcpp.hpp>               
-#include <resource_retriever/retriever.hpp>  
+#include <rclcpp/rclcpp.hpp>
+#if defined(ROS_DISTRO_FOXY)
+#include <resource_retriever/retriever.h>
+#else
+#include <resource_retriever/retriever.hpp>
+#endif
 #include <tinyxml2.h>
 
 #include <assimp/Importer.hpp>
