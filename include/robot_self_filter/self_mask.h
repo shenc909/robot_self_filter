@@ -13,7 +13,11 @@
 #include <pcl_conversions/pcl_conversions.h>
 #include <sensor_msgs/msg/point_cloud2.hpp>
 #include <urdf/model.h>
+#if defined(ROS_DISTRO_FOXY)
+#include <resource_retriever/retriever.h>
+#else
 #include <resource_retriever/retriever.hpp>
+#endif
 #include <boost/filesystem.hpp>
 #include <boost/function.hpp>
 #include <string>

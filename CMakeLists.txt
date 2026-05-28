@@ -3,6 +3,17 @@ cmake_minimum_required(VERSION 3.8)
 
 project(robot_self_filter)
 
+# Select Foxy vs Humble code paths from the active ROS distro. Mirrors the
+# pattern in src/robot_joint_controller/CMakeLists.txt.
+if($ENV{ROS_DISTRO} STREQUAL "foxy")
+  add_definitions(-DROS_DISTRO_FOXY)
+elseif($ENV{ROS_DISTRO} STREQUAL "humble")
+  add_definitions(-DROS_DISTRO_HUMBLE)
+else()
+  message(WARNING "robot_self_filter: untested ROS_DISTRO=$ENV{ROS_DISTRO}, defaulting to Humble path")
+  add_definitions(-DROS_DISTRO_HUMBLE)
+endif()
+
 unset(FLANN_ROOT CACHE)
 unset(FLANN_ROOT)
 if(DEFINED ENV{FLANN_ROOT})

@@ -71,10 +71,12 @@ namespace robot_self_filter
       RCLCPP_INFO(this->get_logger(), "  in_pointcloud_topic: %s", in_topic_.c_str());
 
       tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
+#if !defined(ROS_DISTRO_FOXY)
       tf_buffer_->setCreateTimerInterface(
           std::make_shared<tf2_ros::CreateTimerROS>(
               this->get_node_base_interface(),
               this->get_node_timers_interface()));
+#endif
       tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 
       // Publish filtered cloud as sensor data QoS (BEST_EFFORT) for high-rate streams
