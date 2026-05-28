@@ -128,7 +128,7 @@ namespace robot_self_filter
     }
 
   private:
-    void cloudCallback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &cloud)
+    void cloudCallback(sensor_msgs::msg::PointCloud2::ConstSharedPtr cloud)
     {
       RCLCPP_INFO(this->get_logger(), "Received cloud message with timestamp %.6f",
                   rclcpp::Time(cloud->header.stamp).seconds());
